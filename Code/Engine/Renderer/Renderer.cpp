@@ -864,11 +864,6 @@ Shader* Renderer::GetShaderByName(const char* shaderName)
 		 hr = m_device->CreateInputLayout(inputElementDesc_PCUTBN, 6, vertexByteCode.data(), vertexByteCode.size(), &newShader->m_inputLayout);
 	 }
 
-	 else if (vertexType == VertexType::DENSITY)
-	 {
-		 hr = m_device->CreateInputLayout(inputElementDesc_DENSITY, 2, vertexByteCode.data(), vertexByteCode.size(), &newShader->m_inputLayout);
-	 }
-
 	 if (!SUCCEEDED(hr))
 	 {
 		 ERROR_AND_DIE("Could not create input layout.");

@@ -359,19 +359,6 @@ bool DevConsole::Command_Help(EventArgs& args)
 	}
 	return true;
 }
-//--------------------------------------------------------------------------------------------------------------------------------------------------------
- bool DevConsole::Command_LoadModel(EventArgs& args)
- {
-	 std::string path = args.GetValue("File", "INVALID_PATH");
-	 if (path == "INVALID_PATH") 
-	 {
-		 g_theDevConsole->AddLine(ERROR_COLOR, "Invalid path provided for model loading.");
-		 return false;
-	 }
-
-	 g_theEventSystem->FireEvent("OnModelLoadCommand", args);
-	 return true;
- }
  //--------------------------------------------------------------------------------------------------------------------------------------------------------
  void DevConsole::SetToClipboard(const std::string& input)
  {
