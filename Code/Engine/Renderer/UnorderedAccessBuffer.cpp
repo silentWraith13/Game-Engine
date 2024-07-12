@@ -15,10 +15,12 @@ UnorderedAccessBuffer::~UnorderedAccessBuffer()
 	{
 		DX_SAFE_RELEASE(m_UAV);
 	}
+
 	if (m_SRV)
 	{
 		DX_SAFE_RELEASE(m_SRV);
 	}
+
 	if (m_buffer)
 	{
 		DX_SAFE_RELEASE(m_buffer);
