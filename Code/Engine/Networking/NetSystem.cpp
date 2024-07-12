@@ -9,6 +9,7 @@
 #include "Engine/Core/StringUtils.hpp"
 #include "Engine/Core/DevConsole.hpp"
 #include "Engine/Core/NamedProperties.hpp"
+
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 NetSystem* g_theNetSystem = nullptr;
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -94,6 +95,7 @@ void NetSystem::ServerStartup()
 	{
 		ERROR_AND_DIE("Invalid IP address and port format");
 	}
+
 	DebuggerPrintf("Server IP Address: %s \n", hostParts[0].c_str());
 
 	int portValue = std::stoi(hostParts[1]);
@@ -101,11 +103,13 @@ void NetSystem::ServerStartup()
 	{
 		ERROR_AND_DIE("The port number is out of range for unsigned short.");
 	}
+
 	else 
 	{
 		m_hostPort = static_cast<unsigned short>(portValue);
 		addr.sin_port = htons(m_hostPort);
 	}
+
 	DebuggerPrintf("Server Port: %d \n", portValue);
 	if (bind(m_listenSocket, (sockaddr*)&addr, sizeof(addr)) == SOCKET_ERROR)
 	{
@@ -123,24 +127,29 @@ void NetSystem::ServerStartup()
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 void NetSystem::ServerBeginFrame()
 {
-	if (m_serverState == ServerState::LISTENING) {
+	if (m_serverState == ServerState::LISTENING) 
+	{
 
 		uintptr_t socket = accept(m_listenSocket, NULL, NULL);
 
 		//m_clientSocket = socket;
-		if (socket != INVALID_SOCKET) {
+		if (socket != INVALID_SOCKET) 
+		{
 			m_clientSocket = socket;
 			unsigned long blockingMode = 1;
 			int result = ioctlsocket(m_clientSocket, FIONBIO, &blockingMode);
-			if (result == SOCKET_ERROR) {
+			if (result == SOCKET_ERROR) 
+			{
 				ERROR_AND_DIE(Stringf("Server listening set blocking mode error: %d\n", WSAGetLastError()));
 			}
-			else {
+			else
+			{
 				m_serverState = ServerState::CONNECTED;
 			}
 
 		}
-		else {
+		else 
+		{
 			int error = WSAGetLastError();
 			if (error != WSAEWOULDBLOCK)
 			{
@@ -168,12 +177,14 @@ void NetSystem::ServerBeginFrame()
 				Startup();
 				return;
 			}
+
 			else if (error != WSAEWOULDBLOCK) 
 			{
 				ERROR_AND_DIE(Stringf("Server receiving error: %d\n", WSAGetLastError()));
 			}
 		}
-		else if (result == 0) {
+		else if (result == 0) 
+		{
 			m_serverState = ServerState::LISTENING;
 			Shutdown();
 			Startup();
@@ -181,7 +192,8 @@ void NetSystem::ServerBeginFrame()
 		}
 
 		// receive msg too long
-		if (result != SOCKET_ERROR && result > m_config.m_recvBufferSize) {
+		if (result != SOCKET_ERROR && result > m_config.m_recvBufferSize) 
+		{
 			ERROR_AND_DIE("Server receive message size is larger than receive buffer");
 		}
 
@@ -189,7 +201,8 @@ void NetSystem::ServerBeginFrame()
 		ReceiveMessage(m_recvBuffer, result);
 
 		// send message
-		if ((int)m_sendQueue.size() > 0) {
+		if ((int)m_sendQueue.size() > 0) 
+		{
 			AddQueueToSendBuffer();
 		}
 	}
@@ -216,7 +229,9 @@ void NetSystem::ClientStartup()
 	{
 		ERROR_AND_DIE("Invalid IP address and port format");
 	}
+	
 	DebuggerPrintf("Client IP Address: %s \n", hostParts[0].c_str());
+	
 	if (inet_pton(AF_INET, hostParts[0].c_str(), &addr) != 1)
 	{
 		ERROR_AND_DIE("Failed to convert IP address string to binary");
@@ -274,10 +289,13 @@ void NetSystem::ClientBeginFrame()
 		timeval failedWaitTime = { };
 		int failedResult = select(0, NULL, NULL, &failedSockets, &failedWaitTime);
 
-		if (failedResult == SOCKET_ERROR) {
+		if (failedResult == SOCKET_ERROR) 
+		{
 			ERROR_AND_DIE(Stringf("Client connection attempt failed error: %d\n", WSAGetLastError()));
 		}
-		if (failedResult > 0 && FD_ISSET(m_clientSocket, &failedSockets)) {
+
+		if (failedResult > 0 && FD_ISSET(m_clientSocket, &failedSockets)) 
+		{
 			m_clientState = ClientState::READY_TO_CONNECT;
 			return;
 		}
@@ -288,11 +306,15 @@ void NetSystem::ClientBeginFrame()
 		FD_SET(m_clientSocket, &successSockets);
 		timeval successWaitTime = { };
 		int successResult = select(0, NULL, &successSockets, NULL, &successWaitTime);
-		if (successResult == SOCKET_ERROR) {
+		
+		if (successResult == SOCKET_ERROR) 
+		{
 			ERROR_AND_DIE(Stringf("Client connection attempt completed error: %d\n", WSAGetLastError()));
 		}
+
 		//We are connected if the following is true.
-		if (successResult > 0 && FD_ISSET(m_clientSocket, &successSockets)) {
+		if (successResult > 0 && FD_ISSET(m_clientSocket, &successSockets)) 
+		{
 			m_clientState = ClientState::CONNECTED;
 		}
 	}
@@ -331,8 +353,10 @@ void NetSystem::ClientBeginFrame()
 
 		// receive message
 		ReceiveMessage(m_recvBuffer, result);
+		
 		// send message
-		if ((int)m_sendQueue.size() > 0) {
+		if ((int)m_sendQueue.size() > 0) 
+		{
 			AddQueueToSendBuffer();
 		}
 	}

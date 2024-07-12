@@ -23,7 +23,7 @@ void Stopwatch::Start()
 	m_startTime = m_clock->GetTotalSeconds();
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
-void Stopwatch::Restart()			//ask Butler.
+void Stopwatch::Restart()		
 {
 	if (!IsStopped()) 
 	{
@@ -94,6 +94,7 @@ bool Stopwatch::DecrementDurationIfElapsed()
 		m_startTime += m_duration;
 		return true;
 	}
+
 	return false;
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------

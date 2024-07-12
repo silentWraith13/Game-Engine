@@ -18,11 +18,12 @@ public:
 	SpriteAnimDefinition(SpriteSheet const& sheet, int startSpriteIndex, int endSpriteIndex,
 		float framesPerSecond = 20.f, SpriteAnimPlaybackType playbackType = SpriteAnimPlaybackType::LOOP);
 
-	void SetStartEndIndex(int startIndex, int endIndex);
-	void SetPlaybackType(SpriteAnimPlaybackType animPlaybackType);
-	void SetSecondsPerFrame(float secondsPerFrame);
-	const float GetDuration() const;
+	void					SetStartEndIndex(int startIndex, int endIndex);
+	void					SetPlaybackType(SpriteAnimPlaybackType animPlaybackType);
+	void					SetSecondsPerFrame(float secondsPerFrame);
 	SpriteDefinition const& GetSpriteDefAtTime(float seconds) const;
+	
+	const float				GetDuration() const;
 
 	SpriteSheet const&		m_spriteSheet;
 	int						m_startSpriteIndex = -1;

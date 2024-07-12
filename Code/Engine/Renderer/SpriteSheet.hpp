@@ -16,13 +16,13 @@ public:
 	explicit SpriteSheet(const Texture& texture, IntVec2 const& textureDimensions, IntVec2 const& simpleGridLayout, bool textureLoader);
 
 	const Texture&			    GetTexture() const;
-	int						GetNumSprites() const;
-	SpriteDefinition const& GetSpriteDef(int spriteIndex) const;
-	void					GetSpriteUVs(Vec2& out_uvAtMins, Vec2& out_uvAtMaxs, int spriteIndex) const;
-	AABB2					GetSpriteUVs(int spriteIndex) const;
+	int							GetNumSprites() const;
+	SpriteDefinition const&		GetSpriteDef(int spriteIndex) const;
+	void						GetSpriteUVs(Vec2& out_uvAtMins, Vec2& out_uvAtMaxs, int spriteIndex) const;
+	AABB2						GetSpriteUVs(int spriteIndex) const;
 
 protected:
-	const Texture&				m_texture;
-	std::vector<SpriteDefinition> m_spriteDefs;
+	const Texture&					m_texture;
+	std::vector<SpriteDefinition>	m_spriteDefs;
 };
 //--------------------------------------------------------------------------------------------------------------------------------------------------------

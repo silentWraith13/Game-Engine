@@ -11,12 +11,12 @@ class SpriteDefinition
 {
 public:
 	explicit SpriteDefinition(SpriteSheet const& spriteSheet, int spriteIndex, Vec2 const& uvAtMins, Vec2 const& uvAtMaxs);
-	void				GetUVs(Vec2& out_uvAtMins, Vec2& out_uvAtMaxs) const;
-	AABB2               GetUVs() const;
-	SpriteSheet const&  GetSpriteSheet() const;
+	
+	void					GetUVs(Vec2& out_uvAtMins, Vec2& out_uvAtMaxs) const;
+	AABB2					GetUVs() const;
+	SpriteSheet const&		GetSpriteSheet() const;
 	const Texture&			GetTexture() const;
-	float				GetAspect() const;
-
+	float					GetAspect() const;
 
 	const SpriteSheet&			m_spriteSheet;
 	int							m_spriteIndex = -1;

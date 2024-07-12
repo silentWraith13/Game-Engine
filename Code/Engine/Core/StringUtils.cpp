@@ -92,9 +92,6 @@ void TrimString(std::string& originalString, char delimiterToTrim)
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 Strings SplitStringWithDelimeterWithQuotes(const std::string& originalString, char delimiterToSplitOn)
 {
-	//RemoteCommand Command=\"Echo Message=1\"
-	//RemoteCommand
-	//Command=\"Echo Message=1\"
 	Strings result;
 	size_t delimeterPos = 0;
 	bool isInQuotes = false;

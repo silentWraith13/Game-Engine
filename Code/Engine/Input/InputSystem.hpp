@@ -68,41 +68,42 @@ class InputSystem
 public:
 	InputSystem(InputSystemConfig const& config);
 	~InputSystem();
-	void Startup();
-	void Shutdown();
-	void BeginFrame();
-	void EndFrame();
-	void HandleKeyPressed(unsigned char keyCode);
-	void HandleKeyReleased(unsigned char keyCode);
+
+	void						Startup();
+	void						Shutdown();
+	void						BeginFrame();
+	void						EndFrame();
+	void						HandleKeyPressed(unsigned char keyCode);
+	void						HandleKeyReleased(unsigned char keyCode);
 	
-	bool WasKeyJustPressed(unsigned char keyCode);
-	bool WasKeyJustReleased(unsigned char keyCode);
-	bool IsKeyDown(unsigned char keyCode);
-	bool IsCtrlHeld();
+	bool						WasKeyJustPressed(unsigned char keyCode);
+	bool						WasKeyJustReleased(unsigned char keyCode);
+	bool						IsKeyDown(unsigned char keyCode);
+	bool						IsCtrlHeld();
 
-	static bool Event_KeyPressed(EventArgs& args);
-	static bool Event_KeyReleased(EventArgs& args);
+	static bool					Event_KeyPressed(EventArgs& args);
+	static bool					Event_KeyReleased(EventArgs& args);
 
-	XboxController const& GetController(int controllerID);
-	InputSystemConfig const& GetConfig() const;
+	XboxController const&		GetController(int controllerID);
+	InputSystemConfig const&	GetConfig() const;
 
 	//Mouse input functions
-	void SetCursorMode(bool hidden, bool relative);
+	void						SetCursorMode(bool hidden, bool relative);
 
 	//Returns the current frame cursor delta in pixels, relative to the client region
-	Vec2 GetCursorClientDelta() const;
+	Vec2						GetCursorClientDelta() const;
 
 	//Returns the cursor position in pixels, relative to the client region
-	Vec2 GetCursorClientPosition() const;
+	Vec2						GetCursorClientPosition() const;
 
 	//Returns the cursor position, normalized to the range [0,1], relative to the client region,
 	//with the y-axis inverted to map from windows conventions to game screen camera conventions
-	Vec2 GetCursorNormalizedPosition() const;
+	Vec2						GetCursorNormalizedPosition() const;
 
 protected:
-	KeyButtonState m_keyStates[NUM_KEYCODES];
-	XboxController m_controllers[NUM_XBOX_CONTROLLERS];
-	InputSystemConfig m_config;
-
-	MouseState m_mouseStateConfig;
+	KeyButtonState		m_keyStates[NUM_KEYCODES];
+	XboxController		m_controllers[NUM_XBOX_CONTROLLERS];
+	InputSystemConfig	m_config;
+	MouseState			m_mouseStateConfig;
 };
+//--------------------------------------------------------------------------------------------------------------------------------------------------------

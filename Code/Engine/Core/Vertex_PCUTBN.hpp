@@ -7,7 +7,13 @@
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 struct Vertex_PCUTBN
 {
+
 public:
+	~Vertex_PCUTBN() {}
+	Vertex_PCUTBN() {}
+
+	explicit Vertex_PCUTBN(Vec3 const& position, Rgba8 const& color, Vec2 const& uvTexCoords, Vec3 const& tangent, Vec3 const& biNormal, Vec3 const& normal);
+	explicit Vertex_PCUTBN(Vertex_PNCU pncu);
 
 	Vec3 m_position;
 	Rgba8 m_color;
@@ -15,14 +21,5 @@ public:
 	Vec3 m_tangent;
 	Vec3 m_binormal;
 	Vec3 m_normal;
-public:
-
-	~Vertex_PCUTBN() {}
-	Vertex_PCUTBN() {}
-
-	explicit Vertex_PCUTBN(Vec3 const& position, Rgba8 const& color, Vec2 const& uvTexCoords, Vec3 const& tangent, Vec3 const& biNormal, Vec3 const& normal);
-	explicit Vertex_PCUTBN(Vertex_PNCU pncu);
-
-
 };
 //--------------------------------------------------------------------------------------------------------------------------------------------------------

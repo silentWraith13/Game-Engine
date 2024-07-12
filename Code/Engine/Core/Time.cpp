@@ -1,8 +1,4 @@
-//-----------------------------------------------------------------------------------------------
-// Time.cpp
-//	
 
-//-----------------------------------------------------------------------------------------------
 #include "Engine/Core/Time.hpp"
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
@@ -30,5 +26,5 @@ double GetCurrentTimeSeconds()
 	double currentSeconds = static_cast< double >( elapsedCountsSinceInitialTime ) * secondsPerCount;
 	return currentSeconds;
 }
-
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
 

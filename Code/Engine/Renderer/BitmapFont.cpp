@@ -11,19 +11,18 @@ BitmapFont::BitmapFont(char const* fontFilePathNameWithNoExtension, Texture& fon
 	,m_fontFilePathNameWithNoExtension(fontFilePathNameWithNoExtension)
 {
 }
-
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
 BitmapFont::BitmapFont(char const* fontFilePathNameWithNoExtension, Texture& fontTexture, IntVec2 const& textureDimensions) :
 	m_fontFilePathNameWithNoExtension(fontFilePathNameWithNoExtension),
 	m_fontGlyphsSpriteSheet(fontTexture, textureDimensions, IntVec2(16, 16))
 {
 
 }
-
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
 const Texture& BitmapFont::GetTexture() const
 {
 	return m_fontGlyphsSpriteSheet.GetTexture();
 }
-
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 void BitmapFont::AddVertsForText2D(std::vector<Vertex_PCU>& vertexArray, Vec2 const& textMins, float cellHeight, std::string const& text, Rgba8 const& tint /*= Rgba8(255,255,255)*/, float cellAspect /*= 1.f*/)
 {
@@ -158,6 +157,4 @@ void BitmapFont::AddVertsForText3D(std::vector<Vertex_PCU>& verts, Vec2 const& t
 	// Step 4: Transform all vertexes by the matrix.
 	TransformVertexArray3D(verts, transform);
 }
-
-
 //--------------------------------------------------------------------------------------------------------------------------------------------------------

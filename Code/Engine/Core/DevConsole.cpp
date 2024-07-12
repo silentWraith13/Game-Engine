@@ -41,22 +41,20 @@ void DevConsole::Startup()
 {
 	//Subscribe to all events.
 	g_theEventSystem->SubscribeEventCallbackFunction("KeyPressed", DevConsole::Event_KeyPressed);
-	g_theEventSystem->SubscribeEventCallbackFunction("CharInput", DevConsole::Event_CharInput);
-	g_theEventSystem->SubscribeEventCallbackFunction("Clear", DevConsole::Command_Clear);
-	g_theEventSystem->SubscribeEventCallbackFunction("Help", DevConsole::Command_Help);
-	//g_theEventSystem->SubscribeEventCallbackFunction("LoadModel", DevConsole::Command_LoadModel);
+	g_theEventSystem->SubscribeEventCallbackFunction("CharInput",  DevConsole::Event_CharInput);
+	g_theEventSystem->SubscribeEventCallbackFunction("Clear",	   DevConsole::Command_Clear);
+	g_theEventSystem->SubscribeEventCallbackFunction("Help",       DevConsole::Command_Help);
 
 	AddLine(INFO_MINOR, "Type Help for a list of commands");
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 void DevConsole::Shutdown()
 {
-	// Un-subscribe from all events
+	// Unsubscribe from all events
 	g_theEventSystem->UnsubscribeEventCallbackFunction("KeyPressed", DevConsole::Event_KeyPressed);
- 	g_theEventSystem->UnsubscribeEventCallbackFunction("CharInput", DevConsole::Event_CharInput);
- 	g_theEventSystem->UnsubscribeEventCallbackFunction("Clear", DevConsole::Command_Clear);
- 	g_theEventSystem->UnsubscribeEventCallbackFunction("Help", DevConsole::Command_Help);
-	//g_theEventSystem->UnsubscribeEventCallbackFunction("LoadModel", DevConsole::Command_LoadModel);
+ 	g_theEventSystem->UnsubscribeEventCallbackFunction("CharInput",	 DevConsole::Event_CharInput);
+ 	g_theEventSystem->UnsubscribeEventCallbackFunction("Clear",      DevConsole::Command_Clear);
+ 	g_theEventSystem->UnsubscribeEventCallbackFunction("Help",       DevConsole::Command_Help);
 
 	m_caretStopwatch->Stop();
 
@@ -119,7 +117,6 @@ void DevConsole::Execute(std::string const& consoleCommandText)
 		m_lines.push_back(line);
 	}
 	
-	
 	FireEvent(command, args);
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -166,7 +163,6 @@ void DevConsole::Render(AABB2 const& bounds)
 	m_config.m_renderer->BindTexture(nullptr);
 
 	//Render the current input line in a distinctive color.
-	//AABB2 inputLineBounds = AABB2(bounds.m_mins, Vec2(bounds.m_maxs.x, lineHeight));
 	AABB2 inputLineBounds = AABB2(bounds.m_mins, Vec2(bounds.m_maxs.x, bounds.m_mins.y + lineHeight));
 	std::vector<Vertex_PCU> inputLineVerts;
 	textFont->AddVertsForTextInBox2D(inputLineVerts, inputLineBounds, lineHeight, m_inputLine, DevConsole::INPUT_TEXT, m_config.m_fontAspect, Vec2(0.f, 1.f), TextDrawMode::SHRINK_TO_FIT);
@@ -367,7 +363,8 @@ bool DevConsole::Command_Help(EventArgs& args)
  bool DevConsole::Command_LoadModel(EventArgs& args)
  {
 	 std::string path = args.GetValue("File", "INVALID_PATH");
-	 if (path == "INVALID_PATH") {
+	 if (path == "INVALID_PATH") 
+	 {
 		 g_theDevConsole->AddLine(ERROR_COLOR, "Invalid path provided for model loading.");
 		 return false;
 	 }

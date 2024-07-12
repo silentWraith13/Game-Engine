@@ -43,29 +43,80 @@ public:
 	~DevConsole();
 
 	//Subscribe to any events needed, prints an initial line of text, and starts the caret timer.
-	void Startup();
-	
-	////Unsubscribe to any events needed, prints a line of text, and stop the caret timer.
-	void Shutdown();
-	void BeginFrame();
-	void EndFrame();
+	void				Startup();
+	void				Shutdown();
+	void				BeginFrame();
+	void				EndFrame();
 
 	//Parses the current input line and executes it using the event system. Commands and arguments
 	//are delimited from each other with space (' ') and argument names and values are delimited with
 	//equals ('='). Echoes the command to the dev console as well as any command input.
-	void Execute(std::string const& consoleCommandText);
+	void				Execute(std::string const& consoleCommandText);
 
 	//Adds a line of text to the current list of lines being shown. Individual lines are delimited
 	//with the newline ('\n') character.
-	void AddLine(Rgba8 const& color, std::string const& text);
+	void				AddLine(Rgba8 const& color, std::string const& text);
 
 	//Renders just visible text lines within the bounds specified. Bounds are in terms of the camera
 	//being used to render. the current input renders at the bottom with all the other lines rendered
 	//above it, with the most recent lines at the bottom.
-	void Render(AABB2 const& bounds);
+	void				Render(AABB2 const& bounds);
 
 	//Toggles between open and closed.
-	void ToggleOpen();
+	void				ToggleOpen();
+
+	//Handle key input.
+	static bool			Event_KeyPressed(EventArgs& args);
+
+	//handle char input by appending valid characters to our current input line.
+	static bool			Event_CharInput(EventArgs& args);
+
+	//Clear all lines of text.
+	static bool			Command_Clear(EventArgs& args);
+
+	//Display all currently registered commands in the event system.
+	static bool			Command_Help(EventArgs& args);
+
+	void				SetToClipboard(const std::string& input);
+	std::string			GetFromClipboard();
+	std::string const	GetPreviousCommand();
+	std::string const	GetNextCommand();
+	void				ResetCaret();
+	void				SetCaretPosition(int position);
+	void				AddToCommandHistory(std::string input);
+	void				RemoveCharacterOnLine(int direction);
+	void				ClearInput();
+	void				ExecuteXmlCommandScriptNode(tinyxml2::XMLElement const& commandScriptXmlElement);
+	void				ExecuteXmlCommandScriptFile(std::string& filePath);
+
+
+	DevConsoleConfig			m_config;
+
+	//True if the dev console is currently visible and accepting input.
+	bool						m_isOpen = false;
+
+	//All lines added to the dev console since the last time it was cleared.
+	std::vector<DevConsoleLine> m_lines;
+
+	//Our current line of input text.
+	std::string					m_inputLine;
+
+	//Index of the caret is currently in the visible phase of blinking.
+	int							m_caretPosition = 0;
+
+	//True if our caret is currently in the visible phase of blinking.
+	bool						m_caretVisible = false;
+	
+	//Stopwatch for controlling caret visibility.
+	Stopwatch*					m_caretStopwatch = nullptr;
+
+	//History of all commands executed.
+	std::vector<std::string>	m_commandHistory;
+
+	//Our current index in our history of commands as we are scrolling.
+	int							m_historyIndex = -1;
+
+	int							m_commandHistorySize = 0;
 
 	static const Rgba8 ERROR_COLOR;
 	static const Rgba8 WARNING;
@@ -74,60 +125,6 @@ public:
 	static const Rgba8 COMMAND_ECHO;
 	static const Rgba8 INPUT_TEXT;
 	static const Rgba8 INPUT_CARET;
-	
-	//Handle key input.
-	static bool Event_KeyPressed(EventArgs& args);
-
-	//handle char input by appending valid characters to our current input line.
-	static bool Event_CharInput(EventArgs& args);
-
-	//Clear all lines of text.
-	static bool Command_Clear(EventArgs& args);
-
-	//Display all currently registered commands in the event system.
-	static bool Command_Help(EventArgs& args);
-
-	static bool Command_LoadModel(EventArgs& args);
-
-	void SetToClipboard(const std::string& input);
-	std::string GetFromClipboard();
-	std::string const GetPreviousCommand();
-	std::string const GetNextCommand();
-	void ResetCaret();
-	void SetCaretPosition(int position);
-	void AddToCommandHistory(std::string input);
-	void RemoveCharacterOnLine(int direction);
-	void ClearInput();
-	void ExecuteXmlCommandScriptNode(tinyxml2::XMLElement const& commandScriptXmlElement);
-	void ExecuteXmlCommandScriptFile(std::string& filePath);
-public:
-	DevConsoleConfig m_config;
-
-	//True if the dev console is currently visible and accepting input.
-	bool m_isOpen = false;
-
-	//All lines added to the dev console since the last time it was cleared.
-	std::vector<DevConsoleLine> m_lines;
-
-	//Our current line of input text.
-	std::string m_inputLine;
-
-	//Index of the caret is currently in the visible phase of blinking.
-	int m_caretPosition = 0;
-
-	//True if our caret is currently in the visible phase of blinking.
-	bool m_caretVisible = false;
-	
-	//Stopwatch for controlling caret visibility.
-	Stopwatch* m_caretStopwatch = nullptr;
-
-	//History of all commands executed.
-	std::vector<std::string> m_commandHistory;
-
-	//Our current index in our history of commands as we are scrolling.
-	int m_historyIndex = -1;
-
-	int m_commandHistorySize = 0;
 
 };
 //--------------------------------------------------------------------------------------------------------------------------------------------------------

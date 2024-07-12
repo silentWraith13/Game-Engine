@@ -93,18 +93,18 @@ class EventSystem
 public:
     EventSystem(EventSystemConfig const& config);
 	~EventSystem();
-	void Startup();
-	void Shutdown();
-	void BeginFrame();
-	void EndFrame();
+	void		Startup();
+	void		Shutdown();
+	void		BeginFrame();
+	void		EndFrame();
 
-	void SubscribeEventCallbackFunction(std::string const& eventName, EventCallBackFunction functionPtr);
-	void UnsubscribeEventCallbackFunction(std::string const& eventName, EventCallBackFunction functionPtr);
-    void UnsubscribeFromAllEvents(EventCallBackFunction functionPtr);
-    void FireEvent(std::string const& eventName, EventArgs& args);
-	void FireEvent(std::string const& eventName);
+	void		SubscribeEventCallbackFunction(std::string const& eventName, EventCallBackFunction functionPtr);
+	void		UnsubscribeEventCallbackFunction(std::string const& eventName, EventCallBackFunction functionPtr);
+    void		UnsubscribeFromAllEvents(EventCallBackFunction functionPtr);
+    void		FireEvent(std::string const& eventName, EventArgs& args);
+	void		FireEvent(std::string const& eventName);
  
-    void GetNamesOfAllEvents(std::vector<std::string>& eventNames);
+    void		GetNamesOfAllEvents(std::vector<std::string>& eventNames);
 
 	template<typename T_ObjectType> 
 	inline void UnsubscribeAllEventCallbackFunctions(T_ObjectType* objectInstance);
@@ -173,7 +173,7 @@ void EventSystem::UnsubscribeAllEventCallbackFunctions(T_ObjectType* objectInsta
 		}
 	}
 }
-
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
 template<typename T_ObjectType, typename MethodType>
 void EventSystem::UnsubscribeEventCallbackFunction(std::string const& eventName, T_ObjectType* objectInstance, MethodType functionPtr)
 {
@@ -201,7 +201,7 @@ void EventSystem::UnsubscribeEventCallbackFunction(std::string const& eventName,
 		}
 	}
 }
-
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
 template<typename T_ObjectType, typename MethodType>
 void EventSystem::UnsubscribeAllEventCallbackFunctions(T_ObjectType* objectInstance, MethodType functionPtr)
 {
@@ -235,11 +235,6 @@ void EventSystem::UnsubscribeAllEventCallbackFunctions(T_ObjectType* objectInsta
 	}
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
 template<typename T_ObjectType, typename MethodType>
 void SubscribeEventCallbackFunction(std::string const& eventName, T_ObjectType* objectInstance, MethodType functionPtr)
 {

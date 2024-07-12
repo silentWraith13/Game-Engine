@@ -66,17 +66,17 @@ public:
 	~NamedProperties();
 
 	template<typename T_Value>
-	inline T_Value GetValue(std::string const& name, T_Value const& defaultValue) const;
+	inline T_Value		GetValue(std::string const& name, T_Value const& defaultValue) const;
 	
 	template<typename T_Value>
-	inline void SetValue(std::string const& name, T_Value const& value);
+	inline void			SetValue(std::string const& name, T_Value const& value);
 
-	inline std::string GetValue(std::string const& name, char const* defaultValue) const;
-	inline void SetValue(std::string const& name, char const* value);
+	inline std::string	GetValue(std::string const& name, char const* defaultValue) const;
+	inline void			SetValue(std::string const& name, char const* value);
 	
-	void PopulateFromXmlElementAttributes(XmlElement const& element);
+	void				PopulateFromXmlElementAttributes(XmlElement const& element);
 
-	void operator=(NamedProperties const& otherNamedProperties);
+	void				operator=(NamedProperties const& otherNamedProperties);
 
 	std::map<HashedCaseInsensitiveString, NamedPropertyBase*> m_keyValuePairs;
 };

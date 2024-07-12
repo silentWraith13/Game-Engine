@@ -1,7 +1,8 @@
 #pragma  once
 
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
 class Clock;
-
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
 //Timer class that can be attached to any clock in a hierarchy and correctly handles duration regardless of update frequency.
 class Stopwatch 
 {
@@ -14,32 +15,33 @@ public:
 	Stopwatch(const Clock* clock, float duration);
 
 	//Set the start time to the clock's current total time.
-	void Start();
+	void	Start();
 
 	//Set the start time to the clock's current total time if we are not stopped.
-	void Restart();
+	void	Restart();
 
 	//Sets the start time back to zero.
-	void Stop();
+	void	Stop();
 
 	//Returns zero if stopped, otherwise returns the time elapsed between the clock's current time and our start time.
-	float GetElapsedTime() const;
+	float	GetElapsedTime() const;
 
 	//Returns the elapsed time as a percentage of our duration.
-	float GetElapsedFraction() const;
+	float	GetElapsedFraction() const;
 
 	//Returns true if our start time is zero.
-	bool IsStopped() const;
+	bool	IsStopped() const;
 
 	//Returns true if our elapsed time is greater than our duration and we are not stopped.
-	bool HasDurationElapsed() const;
-	void SetDuration(float duration);
+	bool	HasDurationElapsed() const;
+	void	SetDuration(float duration);
 	//If duration has elapsed and we are not stopped, decrements a duration by adding a
 	//duration to the start time and returns true. Generally called within a loop until it
 	// returns false so the caller can process each elapsed duration.
-	bool DecrementDurationIfElapsed();
+	bool	DecrementDurationIfElapsed();
 
-	const Clock* m_clock = nullptr;
-	float m_startTime = 0.f;
-	float m_duration = 0.f;
+	const Clock*	m_clock = nullptr;
+	float			m_startTime = 0.f;
+	float			m_duration = 0.f;
 };
+//--------------------------------------------------------------------------------------------------------------------------------------------------------

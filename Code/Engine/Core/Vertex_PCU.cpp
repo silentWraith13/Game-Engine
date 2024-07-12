@@ -7,13 +7,13 @@ Vertex_PCU::Vertex_PCU(Vec3 const& position, Rgba8 const& tint, Vec2 const& uvTe
 Vertex_PCU::Vertex_PCU(Vec2 const& pos, Rgba8 const& color2)
 	:m_position(pos.x, pos.y, 0.f),
 	 m_color(color2),
-	m_uvTexCoords(0.f,0.f)
+	 m_uvTexCoords(0.f,0.f)
 {
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 Vertex_PCU::Vertex_PCU(Vec3 const& position, Rgba8 const& tint)
 	:m_position(position),
-	m_color(tint)
+	 m_color(tint)
 {
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -8,11 +8,11 @@ struct OBB2D : public Shape2D
 {
 public:
 	void GetCornerPoints(Vec2* out_fourCornerWorldPositions) const;
-	void RotateAboutCenter(float rotationDeltaDegrees);
-	void RotateAboutCorner(float rotationDegrees, Vec2 const& rotationPoint);
 	Vec2 GetLocalPosForWorldPos(Vec2 worldPos) const;
 	Vec2 GetWorldPosForLocalPos(Vec2 localPos) const;
 
+	void RotateAboutCenter(float rotationDeltaDegrees);
+	void RotateAboutCorner(float rotationDegrees, Vec2 const& rotationPoint);
 	void Translate(Vec2 const& newCenter);
 
 public:

@@ -15,8 +15,8 @@ public:
 
 	unsigned int const GetStride();
 
-	ID3D11Buffer* m_buffer = nullptr;
-	size_t m_size = 0;
-	unsigned int m_stride = 0;
+	ID3D11Buffer*	m_buffer = nullptr;
+	size_t			m_size = 0;
+	unsigned int	m_stride = 0;
 };
 //--------------------------------------------------------------------------------------------------------------------------------------------------------

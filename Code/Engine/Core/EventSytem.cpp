@@ -207,4 +207,5 @@ void GetNamesOfAllEvents(std::vector<std::string>& eventNames)
 		g_theEventSystem->GetNamesOfAllEvents(eventNames);
 	}
 }
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
 

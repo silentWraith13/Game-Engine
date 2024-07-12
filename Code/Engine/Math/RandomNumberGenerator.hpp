@@ -3,7 +3,6 @@
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 class RandomNumberGenerator 
 {
-
 public:
 	RandomNumberGenerator(unsigned int seed = 0);
 	int    RollRandomIntLessThan(int maxNotInclusive);

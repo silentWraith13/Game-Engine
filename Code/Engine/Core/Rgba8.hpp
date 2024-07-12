@@ -1,9 +1,6 @@
 #pragma once
 
-
-
-
-//-----------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------
 struct Rgba8
 {
 public:
@@ -11,7 +8,6 @@ public:
 	unsigned char g = 255;
 	unsigned char b = 255;
 	unsigned char a = 255;
-
 
 public:
 
@@ -22,7 +18,6 @@ public:
 	void		SetFromText(char const* text);
 	void		GetAsFloats(float* colorAsFloats) const;
 	Rgba8		BlendColors(Rgba8 startColor, Rgba8 endColor, float blendFactor) const;
-	Rgba8		HueToColor(float hue);
 	
 	bool		operator==(const Rgba8& compare) const;
 	Rgba8		operator*(float scale) const;

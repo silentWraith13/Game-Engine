@@ -12,7 +12,7 @@ public:
 	ConstantBuffer(const ConstantBuffer& copy) = delete;
 	virtual ~ConstantBuffer();
 
-	ID3D11Buffer* m_buffer = nullptr;
-	size_t m_size = 0;
+	ID3D11Buffer*	m_buffer = nullptr;
+	size_t			m_size = 0;
 };
 //--------------------------------------------------------------------------------------------------------------------------------------------------------

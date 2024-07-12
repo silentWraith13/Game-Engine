@@ -22,10 +22,10 @@ public:
 	RenderTexture(const RenderTexture& copy) = delete;
 	virtual ~RenderTexture();
 
-	ID3D11Texture2D* m_renderTargetTexture;
-	ID3D11RenderTargetView* m_renderTargetView;
-	ID3D11ShaderResourceView* m_shaderResourceView;
-	int m_width;
-	int m_height;
+	ID3D11Texture2D*			m_renderTargetTexture;
+	ID3D11RenderTargetView*		m_renderTargetView;
+	ID3D11ShaderResourceView*	m_shaderResourceView;
+	int							m_width;
+	int							m_height;
 };
 //--------------------------------------------------------------------------------------------------------------------------------------------------------

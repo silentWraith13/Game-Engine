@@ -16,16 +16,13 @@ public:
 	Texture(Texture const& copy) = delete; // No copying allowed!  This represents GPU memory.
 	virtual ~Texture();
 
-public:
-	IntVec2				GetDimensions() const { return m_dimensions; }
-	std::string const& GetImageFilePath() const { return m_name; }
+	IntVec2					GetDimensions() const { return m_dimensions; }
+	std::string const&		GetImageFilePath() const { return m_name; }
 
-
-	std::string			m_name;
-	IntVec2				m_dimensions;
-
-	unsigned int m_textureID = 0xFFFFFFFF;
-	ID3D11Texture2D* m_texture = nullptr;
-	ID3D11ShaderResourceView* m_shaderResourceView = nullptr;
+	std::string					m_name;
+	IntVec2						m_dimensions;
+	unsigned int				m_textureID = 0xFFFFFFFF;
+	ID3D11Texture2D*			m_texture = nullptr;
+	ID3D11ShaderResourceView*	m_shaderResourceView = nullptr;
 };
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
