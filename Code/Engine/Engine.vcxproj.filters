@@ -223,16 +223,7 @@
     <ClCompile Include="Renderer\Camera.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer\Composition.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="Renderer\ConstantBuffer.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer\Denoiser.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer\GlobalIllumination.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Renderer\GPUMesh.cpp">
@@ -241,40 +232,13 @@
     <ClCompile Include="Renderer\IndexBuffer.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer\PostProcess.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer\Raytracer.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer\RaytracingHelpers.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer\RenderD12Pass.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="Renderer\Renderer.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer\RendererD12.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Renderer\RenderTexture.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer\ResourceManager.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer\Sampler.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="Renderer\Shader.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer\ShaderD12.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer\ShadowMap.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Renderer\SpriteAnimDefinition.cpp">
@@ -287,9 +251,6 @@
       <Filter>Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Renderer\Texture.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer\TextureD12.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Renderer\UnorderedAccessBuffer.cpp">
@@ -519,19 +480,10 @@
     <ClInclude Include="Renderer\Camera.hpp">
       <Filter>Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer\Composition.hpp">
-      <Filter>Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="Renderer\ConstantBuffer.hpp">
       <Filter>Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Renderer\DefaultShader.hpp">
-      <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer\Denoiser.hpp">
-      <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer\GlobalIllumination.hpp">
       <Filter>Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Renderer\GPUMesh.hpp">
@@ -540,43 +492,13 @@
     <ClInclude Include="Renderer\IndexBuffer.hpp">
       <Filter>Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer\PostProcess.hpp">
-      <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer\Raytracer.hpp">
-      <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer\Raytracing.hlsl.h">
-      <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer\RaytracingHelpers.hpp">
-      <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer\RenderD12Pass.hpp">
-      <Filter>Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="Renderer\Renderer.hpp">
-      <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer\RendererD12.hpp">
       <Filter>Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Renderer\RenderTexture.hpp">
       <Filter>Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer\ResourceManager.hpp">
-      <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer\Sampler.hpp">
-      <Filter>Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="Renderer\Shader.hpp">
-      <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer\ShaderD12.hpp">
-      <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer\ShadowMap.hpp">
       <Filter>Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Renderer\SpriteAnimDefinition.hpp">
@@ -589,9 +511,6 @@
       <Filter>Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Renderer\Texture.hpp">
-      <Filter>Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer\TextureD12.hpp">
       <Filter>Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Renderer\UnorderedAccessBuffer.hpp">
