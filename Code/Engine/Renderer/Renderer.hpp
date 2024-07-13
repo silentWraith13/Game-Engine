@@ -162,7 +162,7 @@ public:
 	void					BindConstantBuffer(int slot, ConstantBuffer* cbo);
 	void					BindConstantBufferWithGS(int slot, ConstantBuffer* cbo);
 
-	//Compute sgader functions
+	//Compute shader functions
 	UnorderedAccessBuffer*	CreateUnorderedAccessBuffer(const size_t numElements, const unsigned int stride, void* data);
 	void					VSSetShaderResource(int slot, int numViews, UnorderedAccessBuffer* uav);
 	void					IASetVertexBuffers( VertexBuffer* vbo);
