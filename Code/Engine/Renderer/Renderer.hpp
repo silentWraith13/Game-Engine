@@ -19,6 +19,8 @@
 	}							  \
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//Dx11 declarations
 struct ID3D11RenderTargetView;
 struct ID3D11Texture2D;
 struct ID3D11Texture2D;
@@ -30,6 +32,9 @@ struct ID3D11BlendState;
 struct ID3D11SamplerState;
 struct ID3D11DepthStencilState;
 struct ID3D11DepthStencilView;
+struct ID3D11ShaderResourceView;
+
+//My engine's Dx11 component classes
 class  Texture;
 class  BitmapFont;
 class  ConstantBuffer;
@@ -40,7 +45,7 @@ class  Image;
 struct ShaderConfig;
 class  UnorderedAccessBuffer;
 class  RenderTexture;
-struct ID3D11ShaderResourceView;
+class  GBuffer;
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 #if defined(OPAQUE)
 #undef OPAQUE
@@ -212,6 +217,8 @@ public:
 	Texture*				CreateCubemapFromImages(std::vector<Image> const& images);
 	Texture*				CreateCubemap(std::vector<Image> const& images);
 
+	//Deferred Rendering - GBuffer
+
 public:
 	Vec2						bottomLeft;
 	Vec2						topRight;
@@ -258,5 +265,7 @@ public:
 	ID3D11SamplerState*			m_samplerStates[(int)(SamplerMode::COUNT)] = {};
 	ID3D11RasterizerState*		m_rasterizerStates[(int)(RasterizerMode::COUNT)] = {};
 	ID3D11DepthStencilState*	m_depthStencilStates[(int)(DepthMode::COUNT)] = {};
+
+	GBuffer*					m_gBuffer;
 };
 
