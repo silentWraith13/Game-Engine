@@ -1,28 +1,15 @@
-#include "Engine/Renderer/Texture.hpp"
+#include "Engine/Renderer/GBuffer.hpp"
+#include "Engine/Renderer/Renderer.hpp"
 #include <d3d11.h>
-#include <dxgi.h>
-#include <d3dcompiler.h>
-#pragma comment (lib, "d3d11.lib")
-#pragma comment (lib, "dxgi.lib")
-#pragma comment (lib, "d3dcompiler.lib")
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
-Texture::Texture()
+GBuffer::GBuffer(ID3D11Texture2D* textures[3], ID3D11RenderTargetView* RTV[3], ID3D11ShaderResourceView* SRV[3], ID3D11DepthStencilView* DSV)
 {
 
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
-Texture::~Texture()
+GBuffer::~GBuffer()
 {
-	if (m_texture)
-	{
-		DX_SAFE_RELEASE(m_texture);
-	}
 
-	if (m_shaderResourceView)
-	{
-		DX_SAFE_RELEASE(m_shaderResourceView);
-	}
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
-
