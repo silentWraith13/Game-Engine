@@ -19,10 +19,13 @@ class GBuffer
 	friend class Renderer;
 
 public:
-	GBuffer(ID3D11Texture2D* textures[3], ID3D11RenderTargetView* RTV[3], ID3D11ShaderResourceView* SRV[3], ID3D11DepthStencilView* DSV);
+	GBuffer(int width, int height);
+	GBuffer(const GBuffer& copy) = delete;
 	~GBuffer();
 
 private:
+	int							m_width;
+	int							m_height;
 	ID3D11Texture2D*			m_textures[3];
 	ID3D11RenderTargetView*		m_RTV[3];
 	ID3D11ShaderResourceView*	m_SRV[3];

@@ -14,6 +14,7 @@
 #include "Engine/Renderer/UnorderedAccessBuffer.hpp"
 #include "Engine/Renderer/RenderTexture.hpp"
 #include "Engine/Renderer/Texture.hpp"
+#include "Engine/Renderer/GBuffer.hpp"
 #include <d3d11.h>
 #include <dxgi.h>
 #include <d3dcompiler.h>

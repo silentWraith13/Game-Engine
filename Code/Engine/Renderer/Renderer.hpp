@@ -33,6 +33,7 @@ struct ID3D11SamplerState;
 struct ID3D11DepthStencilState;
 struct ID3D11DepthStencilView;
 struct ID3D11ShaderResourceView;
+struct  ID3D11Buffer;
 
 //My engine's Dx11 component classes
 class  Texture;
@@ -95,6 +96,20 @@ enum class VertexType
 	PNCU,
 	PCUTBN,
 	COUNT
+};
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
+struct DeferredRenderCommand //A structure that has stuff which is needed for a deferred rendering pipeline
+{
+	ID3D11Buffer*							vertexBuffer;
+	ID3D11Buffer*							indexBuffer;
+	unsigned int							vertexCount;
+	unsigned int							indexCount;
+	unsigned int							vertexStride;
+	D3D11_PRIMITIVE_TOPOLOGY				topology;
+	std::vector<ID3D11ShaderResourceView*>  textures;
+	ID3D11VertexShader*						vertexShader;
+	ID3D11PixelShader*						pixelShader;
+	ID3D11InputLayout*						inputLayout;
 };
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 class Renderer
@@ -212,17 +227,19 @@ public:
 	void					SetBackBufferRenderTarget();
 	void					BindRenderTexture(RenderTexture* texture, unsigned int slot = 0);
 
-	//Cubemap
+	//Cubemap functions
 	Texture*				CreateCubeMapFomFile(char const* imagePath);
 	Texture*				CreateCubemapFromImages(std::vector<Image> const& images);
 	Texture*				CreateCubemap(std::vector<Image> const& images);
 
 	//Deferred Rendering - GBuffer
+	void					DeferredRendering(const std::vector<DeferredRenderCommand>& renderCommands);
+	GBuffer*				CreateGBuffer(int width, int height);
+	void					DoGeometryPass(const std::vector<DeferredRenderCommand>& renderCommands);
+	void					DoLightingPass();
+	void					DoShadowPass();
 
 public:
-	Vec2						bottomLeft;
-	Vec2						topRight;
-
 	std::vector<Texture*>		m_loadedTextures;
 	std::vector<BitmapFont*>	m_loadedFonts;
 
