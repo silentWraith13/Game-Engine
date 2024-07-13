@@ -483,6 +483,7 @@
     <ClCompile Include="Core\BufferUtils.cpp" />
     <ClCompile Include="Core\Clock.cpp" />
     <ClCompile Include="Core\CPUMesh.cpp" />
+    <ClCompile Include="Core\DebugRenderSystem.cpp" />
     <ClCompile Include="Core\DevConsole.cpp" />
     <ClCompile Include="Core\EngineCommon.cpp" />
     <ClCompile Include="Core\ErrorWarningAssert.cpp" />
@@ -533,6 +534,7 @@
     <ClCompile Include="Renderer\BitmapFont.cpp" />
     <ClCompile Include="Renderer\Camera.cpp" />
     <ClCompile Include="Renderer\ConstantBuffer.cpp" />
+    <ClCompile Include="Renderer\DeferredRenderCommand.cpp" />
     <ClCompile Include="Renderer\GBuffer.cpp" />
     <ClCompile Include="Renderer\GPUMesh.cpp" />
     <ClCompile Include="Renderer\IndexBuffer.cpp" />
@@ -572,6 +574,7 @@
     <ClInclude Include="Core\BufferUtils.hpp" />
     <ClInclude Include="Core\Clock.hpp" />
     <ClInclude Include="Core\CPUMesh.hpp" />
+    <ClInclude Include="Core\DebugRenderSystem.hpp" />
     <ClInclude Include="Core\DevConsole.hpp" />
     <ClInclude Include="Core\EngineCommon.hpp" />
     <ClInclude Include="Core\ErrorWarningAssert.hpp" />
@@ -623,6 +626,7 @@
     <ClInclude Include="Renderer\Camera.hpp" />
     <ClInclude Include="Renderer\ConstantBuffer.hpp" />
     <ClInclude Include="Renderer\DefaultShader.hpp" />
+    <ClInclude Include="Renderer\DeferredRenderCommand.hpp" />
     <ClInclude Include="Renderer\GBuffer.hpp" />
     <ClInclude Include="Renderer\GPUMesh.hpp" />
     <ClInclude Include="Renderer\IndexBuffer.hpp" />

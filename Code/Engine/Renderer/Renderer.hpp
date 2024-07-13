@@ -33,7 +33,10 @@ struct ID3D11SamplerState;
 struct ID3D11DepthStencilState;
 struct ID3D11DepthStencilView;
 struct ID3D11ShaderResourceView;
-struct  ID3D11Buffer;
+struct ID3D11Buffer;
+struct ID3D11VertexShader;
+struct ID3D11PixelShader;
+struct ID3D11InputLayout;
 
 //My engine's Dx11 component classes
 class  Texture;
@@ -47,6 +50,7 @@ struct ShaderConfig;
 class  UnorderedAccessBuffer;
 class  RenderTexture;
 class  GBuffer;
+struct DeferredRenderCommand;
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 #if defined(OPAQUE)
 #undef OPAQUE
@@ -97,20 +101,8 @@ enum class VertexType
 	PCUTBN,
 	COUNT
 };
-//--------------------------------------------------------------------------------------------------------------------------------------------------------
-struct DeferredRenderCommand //A structure that has stuff which is needed for a deferred rendering pipeline
-{
-	ID3D11Buffer*							vertexBuffer;
-	ID3D11Buffer*							indexBuffer;
-	unsigned int							vertexCount;
-	unsigned int							indexCount;
-	unsigned int							vertexStride;
-	D3D11_PRIMITIVE_TOPOLOGY				topology;
-	std::vector<ID3D11ShaderResourceView*>  textures;
-	ID3D11VertexShader*						vertexShader;
-	ID3D11PixelShader*						pixelShader;
-	ID3D11InputLayout*						inputLayout;
-};
+
+
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 class Renderer
 {
