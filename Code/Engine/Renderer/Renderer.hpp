@@ -131,13 +131,13 @@ public:
 	void					DrawVertexArray(int numVertexes, const Vertex_PNCU* vertexes);
 
 	//Texture functions
-	void					BindTexture(const Texture* texture, unsigned int slot = 0);
-	void					BindTextures(const Texture* texture0, const Texture* texture1, const Texture* texture2);
-	Texture*				CreateTextureFromFile(char const* imageFilePath);
-	Texture*				CreateOrGetTextureFromFile(char const* imageFilePath);
-	Texture*				GetTextureForFileName(char const* imageFilePath);
 	Texture*				CreateTextureFromData(char const* name, IntVec2 dimensions, int bytesPerTexel, uint8_t* texelData);
 	Texture*				CreateTextureFromImage(const Image& image);
+	Texture*				CreateTextureFromFile(char const* imageFilePath);
+	Texture*				CreateOrGetTextureFromFile(char const* imageFilePath);
+	void					BindTexture(const Texture* texture, unsigned int slot = 0);
+	void					BindTextures(const Texture* texture0, const Texture* texture1, const Texture* texture2);
+	Texture*				GetTextureForFileName(char const* imageFilePath);
 	void					DestroyTexture(Texture* texture);
 
 	//Bitmap functions
@@ -223,6 +223,8 @@ public:
 	Texture*				CreateCubeMapFomFile(char const* imagePath);
 	Texture*				CreateCubemapFromImages(std::vector<Image> const& images);
 	Texture*				CreateCubemap(std::vector<Image> const& images);
+
+	//Shadowmap functions
 
 	//Deferred Rendering - GBuffer
 	void					DeferredRendering(const std::vector<DeferredRenderCommand>& renderCommands);
