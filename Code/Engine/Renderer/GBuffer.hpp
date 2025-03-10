@@ -23,7 +23,6 @@ public:
 	GBuffer(const GBuffer& copy) = delete;
 	~GBuffer();
 
-private:
 	int							m_width;
 	int							m_height;
 	ID3D11Texture2D*			m_textures[3];

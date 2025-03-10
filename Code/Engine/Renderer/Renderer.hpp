@@ -227,11 +227,10 @@ public:
 	//Shadowmap functions
 
 	//Deferred Rendering - GBuffer
-	void					DeferredRendering(const std::vector<DeferredRenderCommand>& renderCommands);
 	GBuffer*				CreateGBuffer(int width, int height);
-	void					DoGeometryPass(const std::vector<DeferredRenderCommand>& renderCommands);
-	void					DoLightingPass();
-	void					DoShadowPass();
+	void					SetRenderTargets(GBuffer* gBuffer);
+	void					ClearGBuffer(GBuffer* gBuffer, const Rgba8& clearColor);
+	void					BindGBufferTextures(GBuffer* gBuffer, unsigned int slot = 0);
 
 public:
 	std::vector<Texture*>		m_loadedTextures;

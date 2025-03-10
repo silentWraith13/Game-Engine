@@ -1479,7 +1479,6 @@ void AddVertsForRing2D(std::vector<Vertex_PCU>& verts, Vec2 const& center, float
 	float outerRadius = radius + halfThickness;
 	constexpr int NUM_SIDES = 24;
 	constexpr int NUM_TRIS = 2 * NUM_SIDES;
-	constexpr int NUM_VERTS = 3 * NUM_TRIS;
 	constexpr float DEGREES_PER_SIDE = 360.f / (float)NUM_SIDES;
 
 	for (int sideNum = 0; sideNum < NUM_SIDES; sideNum++)

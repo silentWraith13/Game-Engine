@@ -1547,6 +1547,110 @@ Texture* Renderer::CreateCubemap(std::vector<Image> const& images)
 	return tex;
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
+GBuffer* Renderer::CreateGBuffer(int width, int height)
+{
+	GBuffer* gbuffer = new GBuffer(width, height);
+
+	// Create three render target textures, one for each GBuffer channel.
+	D3D11_TEXTURE2D_DESC textureDesc = {};
+	textureDesc.Width = width;
+	textureDesc.Height = height;
+	textureDesc.MipLevels = 1;       // Single mip-level for deferred rendering.
+	textureDesc.ArraySize = 1;
+	textureDesc.SampleDesc.Count = 1;
+	textureDesc.Usage = D3D11_USAGE_DEFAULT;
+	// We need both a render target view and a shader resource view.
+	textureDesc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
+
+	// Choose formats for each channel:
+	// RT0: Albedo/Diffuse (DXGI_FORMAT_R8G8B8A8_UNORM)
+	// RT1: Normals (DXGI_FORMAT_R16G16B16A16_FLOAT - higher precision)
+	// RT2: Material properties (DXGI_FORMAT_R8G8B8A8_UNORM)
+	DXGI_FORMAT formats[3] = 
+	{
+		DXGI_FORMAT_R8G8B8A8_UNORM,
+		DXGI_FORMAT_R16G16B16A16_FLOAT,
+		DXGI_FORMAT_R8G8B8A8_UNORM
+	};
+
+	for (int i = 0; i < 3; ++i)
+	{
+		textureDesc.Format = formats[i];
+		HRESULT hr = m_device->CreateTexture2D(&textureDesc, nullptr, &gbuffer->m_textures[i]);
+		if (FAILED(hr))
+		{
+			ERROR_AND_DIE("Failed to create GBuffer texture.");
+		}
+		hr = m_device->CreateRenderTargetView(gbuffer->m_textures[i], nullptr, &gbuffer->m_RTV[i]);
+		if (FAILED(hr))
+		{
+			ERROR_AND_DIE("Failed to create GBuffer render target view.");
+		}
+		hr = m_device->CreateShaderResourceView(gbuffer->m_textures[i], nullptr, &gbuffer->m_SRV[i]);
+		if (FAILED(hr))
+		{
+			ERROR_AND_DIE("Failed to create GBuffer shader resource view.");
+		}
+	}
+
+	// Create the depth-stencil texture and view.
+	D3D11_TEXTURE2D_DESC depthDesc = {};
+	depthDesc.Width = width;
+	depthDesc.Height = height;
+	depthDesc.MipLevels = 1;
+	depthDesc.ArraySize = 1;
+	// Use 32-bit float depth.
+	depthDesc.Format = DXGI_FORMAT_D32_FLOAT;
+	depthDesc.SampleDesc.Count = 1;
+	depthDesc.Usage = D3D11_USAGE_DEFAULT;
+	depthDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+
+	ID3D11Texture2D* depthTexture = nullptr;
+	HRESULT hr = m_device->CreateTexture2D(&depthDesc, nullptr, &depthTexture);
+	if (FAILED(hr))
+	{
+		ERROR_AND_DIE("Failed to create GBuffer depth texture.");
+	}
+	hr = m_device->CreateDepthStencilView(depthTexture, nullptr, &gbuffer->m_DSV);
+	if (FAILED(hr))
+	{
+		ERROR_AND_DIE("Failed to create GBuffer depth stencil view.");
+	}
+	DX_SAFE_RELEASE(depthTexture);
+
+	return gbuffer;
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
+void Renderer::SetRenderTargets(GBuffer* gBuffer)
+{
+	ID3D11ShaderResourceView* nullSRVs[3] = { nullptr, nullptr, nullptr };
+	m_deviceContext->PSSetShaderResources(0, 3, nullSRVs);
+	m_deviceContext->OMSetRenderTargets(3, gBuffer->m_RTV, gBuffer->m_DSV);
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
+void Renderer::ClearGBuffer(GBuffer* gBuffer, const Rgba8& clearColor)
+{
+	float color[4];
+	clearColor.GetAsFloats(color);
+	for (int i = 0; i < 3; i++)
+	{
+		m_deviceContext->ClearRenderTargetView(gBuffer->m_RTV[i], color);
+	}
+	m_deviceContext->ClearDepthStencilView(gBuffer->m_DSV, D3D11_CLEAR_DEPTH, 1.0f, 0);
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
+void Renderer::BindGBufferTextures(GBuffer* gBuffer, unsigned int slot /*= 0*/)
+{
+	if (gBuffer)
+	{
+		m_deviceContext->PSSetShaderResources(slot, 3, gBuffer->m_SRV);
+	}
+	else
+	{
+		m_deviceContext->PSSetShaderResources(slot, 1, &m_defaultTexture->m_shaderResourceView);
+	}
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------------------
 void Renderer::DestroyTexture(Texture* texture)
 {
 	if (texture != nullptr)
